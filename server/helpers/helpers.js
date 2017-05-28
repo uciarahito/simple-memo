@@ -10,4 +10,16 @@ methods.checkToken = (token) => {
   }
 }
 
+methods.checkRole = (req, res, next) => {
+  let token = req.headers.token
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+    if (decoded) {
+      req.body.role = decoded.role
+      next()
+    } else {
+      req.json({err})
+    }
+  })
+}
+
 module.exports = methods
