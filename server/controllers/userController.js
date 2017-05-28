@@ -28,6 +28,7 @@ methods.signIn = (req, res) => {
   }, (err, record) => {
     if (bCrypt.compareSync(pwd, record.password)) {
       let token = jwt.sign({
+        id: record._id,
         name: record.name,
         username: record.username,
         email: record.email,
@@ -36,6 +37,7 @@ methods.signIn = (req, res) => {
 
       res.json({
         message: 'SignIn is success',
+        id: record._id,
         name: record.name,
         username: record.username,
         role: record.role,
