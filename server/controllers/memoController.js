@@ -76,13 +76,14 @@ methods.getDetailMemo = (req, res) => {
 }
 
 methods.editMemo = (req, res) => {
+  console.log('mmmmmmmm');
   let decoded = Helpers.checkToken(req.headers.token)
   Memo.findById(req.params.id)
-  .populate('user')
   .exec((err, record) => {
     console.log('get detail memo success');
-    console.log(record.user._id+' *** '+decoded.id);
-    if (record.user._id == decoded.id) {
+    console.log(record);
+    // console.log(record.user+' *** '+decoded.id);
+    if (record.user == decoded.id) {
       Memo.updateOne({
         "_id": record._id
       }, {

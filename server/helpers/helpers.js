@@ -17,7 +17,7 @@ methods.checkRole = (req, res, next) => {
       req.body.role = decoded.role
       next()
     } else {
-      req.json({err})
+      res.json({err})
     }
   })
 }

@@ -12,8 +12,7 @@ methods.signUp = (req, res) => {
     name: req.body.name,
     username: req.body.username,
     password: hash,
-    email: req.body.email,
-    role: req.body.role
+    email: req.body.email
   })
 
   newUser.save((err, record) => {
